@@ -1,0 +1,14 @@
+package com.meli.interview.back.subscription_api.infrastructure.daos.subscriptionDAO;
+
+import com.meli.interview.back.subscription_api.domain.exception.CollaboratorCallException;
+import com.meli.interview.back.subscription_api.domain.models.User;
+import com.meli.interview.back.subscription_api.domain.models.Subscription;
+
+import java.util.ArrayList;
+
+public class NewSubscriptionDAO implements SubscriptionDAO {
+    public ArrayList<Subscription> findSubscriptionByUser(User user) {
+        throw new CollaboratorCallException(
+                "TripDAO should not be invoked on an unit test.");
+    }
+}

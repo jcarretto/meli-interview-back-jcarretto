@@ -1,4 +1,4 @@
-package com.meli.interview.back.subscription_api.exception;
+package com.meli.interview.back.subscription_api.domain.exception;
 
 public class CollaboratorCallException extends RuntimeException {
 

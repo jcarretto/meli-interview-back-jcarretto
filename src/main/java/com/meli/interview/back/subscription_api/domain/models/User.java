@@ -1,6 +1,4 @@
-package com.meli.interview.back.subscription_api.session;
-
-import com.meli.interview.back.subscription_api.subscription.Subscription;
+package com.meli.interview.back.subscription_api.domain.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +8,12 @@ public class User {
     private String id;
     private String name;
 
-    private List<Subscription> subscriptions = new ArrayList<Subscription>();
-    private List<User> friends = new ArrayList<User>();
+    private final List<Subscription> subscriptions = new ArrayList<Subscription>();
+    private final List<User> friends = new ArrayList<User>();
+
+    public User(String name){
+        this.name = name;
+    }
 
     public List<User> getFriends() {
         return friends;
@@ -26,7 +28,7 @@ public class User {
     }
 
     public List<Subscription> subscriptions() {
-        return subscriptions;
+        return new ArrayList<Subscription>(subscriptions);
     }
 
     public String getId() {
