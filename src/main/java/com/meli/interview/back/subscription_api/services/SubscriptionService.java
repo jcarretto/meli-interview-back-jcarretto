@@ -5,6 +5,7 @@ import com.meli.interview.back.subscription_api.domain.models.Subscription;
 import com.meli.interview.back.subscription_api.domain.models.User;
 import com.meli.interview.back.subscription_api.infrastructure.session.UserSession;
 import com.meli.interview.back.subscription_api.infrastructure.daos.subscriptionDAO.SubscriptionDAO;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class SubscriptionService {
     }
 }
 */
-
+@Service
 public class SubscriptionService {
 
     private final SubscriptionDAO subscriptionDAO;
@@ -70,15 +71,13 @@ public class SubscriptionService {
 
         User loggedUser = UserSession.getInstance().getLoggedUser();
 
-        if (loggedUser != null) {
-            if (isFriend(loggedUser, user)) {
-                subscriptionList = subscriptionDAO.findSubscriptionByUser(user);
-            }
-            return totalPrice(subscriptionList);
-
-        } else {
+        if (loggedUser == null) {
             throw new UserNotLoggedInException();
         }
+        if (isFriend(loggedUser, user)) {
+            subscriptionList = subscriptionDAO.findSubscriptionByUser(user);
+        }
+        return totalPrice(subscriptionList);
     }
 
     private boolean isFriend(User user, User possibleFriend){
@@ -88,12 +87,6 @@ public class SubscriptionService {
     }
 
     private float totalPrice(List<Subscription> subscriptions){
-        float totalPrice = 0;
-
-        for (Subscription subscription : subscriptions) {
-            totalPrice += subscription.getPrice();
-        }
-
-        return totalPrice;
+        return (float) subscriptions.stream().mapToDouble(Subscription::getPrice).sum();
     }
 }
