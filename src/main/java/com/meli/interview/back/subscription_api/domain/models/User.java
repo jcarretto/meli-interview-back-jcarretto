@@ -23,8 +23,16 @@ public class User {
         friends.add(user);
     }
 
+    public void addFriends(List<User> newFriends){
+        friends.addAll(newFriends);
+    }
+
     public void addSubscription(Subscription trip) {
         subscriptions.add(trip);
+    }
+
+    public void addSubscriptions(List<Subscription> newSubscriptions){
+        subscriptions.addAll(newSubscriptions);
     }
 
     public List<Subscription> subscriptions() {

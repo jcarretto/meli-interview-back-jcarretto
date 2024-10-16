@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
-@Repository
 public class OldSubscriptionDAO implements SubscriptionDAO{
 
     public ArrayList<Subscription> findSubscriptionByUser(User user) {

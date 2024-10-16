@@ -5,7 +5,7 @@ import com.meli.interview.back.subscription_api.domain.models.User;
 
 public class UserSession {
 
-    private static final UserSession userSession = new UserSession();
+    private static UserSession userSession = new UserSession();
 
     private UserSession() {
     }
